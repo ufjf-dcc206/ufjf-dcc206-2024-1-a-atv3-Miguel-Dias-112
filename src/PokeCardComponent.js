@@ -30,7 +30,7 @@ export default class PokeCard extends HTMLElement{
                     justify-content: flex-start;
                      align-items: flex-start;
                     flex-direction: column;
-                    width:auto ;
+                    width:fit-content ;
                     min-width: 300px;
                     height:auto;
                     border:2px solid black;
@@ -60,7 +60,7 @@ export default class PokeCard extends HTMLElement{
             this.#nome = novo;
         }
         if( chave == "img"){
-            this.#img.push(novo);
+            this.#img = novo;
             
         }
         this.#render()
