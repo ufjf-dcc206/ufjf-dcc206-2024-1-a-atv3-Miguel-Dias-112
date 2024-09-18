@@ -27,12 +27,31 @@ class Cartas {
         });
     }       
 }
+function click(e:Event, ctn:HTMLElement) {
+    const elem = e.target! as HTMLElement;
+    const lista_cartas3 = document.querySelector('#lista_cartas3')!;
+    
+    ctn.removeChild(elem);
+    lista_cartas3.appendChild(elem);
 
-const listaCartas:Cartas[] = [];
-for(let i =0; i <= 10; i++){
-    let randnumber:number = Math.floor(Math.random() * 152);
-    const listDesordenada = document.querySelector('#lista_cartas');
+
+}
+function pushList(id:String) {
+    const listDesordenada = document.querySelector('#'+id);
     if (listDesordenada && listDesordenada.children) {
-        listaCartas.push(new Cartas(randnumber, listDesordenada.children[i] as HTMLElement));
+        for (let i = 0; i < 5; i++) {
+            let randnumber:number = Math.floor(Math.random() * 152);
+            listaCartas.push(new Cartas(randnumber, listDesordenada.children[i] as HTMLElement));
+            (listDesordenada.children[i] as HTMLElement).addEventListener('click', (e:Event) => {
+                click(e, listDesordenada as HTMLElement);
+            });
+            
+        }
+        
     }
 }
+
+const listaCartas:Cartas[] = [];
+
+pushList('lista_cartas2');
+pushList('lista_cartas1');

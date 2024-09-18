@@ -21,17 +21,18 @@ export default class PokeCard extends HTMLElement{
 
     }
     #render(){
+        if(this.#nome == undefined){return}
         this.#shadow.innerHTML = 
         `
             <style>
             
                 div{
                     display: flex;
-                    justify-content: flex-start;
-                     align-items: flex-start;
+                    justify-content:center;
+                     align-items: center;
                     flex-direction: column;
-                    width:fit-content ;
-                    min-width: 300px;
+                    width:auto ;
+                    min-width: 180px;
                     height:auto;
                     border:2px solid black;
                     padding: 20px;
