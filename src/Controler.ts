@@ -16,11 +16,9 @@ class Cartas {
 
         }
         ).then((pokemon) => {
-            console.log(pokemon);
             this.nome = pokemon.name;
             this.img = pokemon.sprites.front_default;
             this.tipo = pokemon.types[0].type.name;
-            console.log(pokemon.sprites);
             _html.setAttribute("nome", this.nome.toString());
             _html.setAttribute("img",  this.img.toString());
             _html.setAttribute("tipo",  this.tipo.toString());
@@ -36,22 +34,32 @@ function click(e:Event, ctn:HTMLElement) {
 
 
 }
-function pushList(id:String) {
+function pushList(id:String,type:String) {
     const listDesordenada = document.querySelector('#'+id);
     if (listDesordenada && listDesordenada.children) {
         for (let i = 0; i < 5; i++) {
             let randnumber:number = Math.floor(Math.random() * 152);
             listaCartas.push(new Cartas(randnumber, listDesordenada.children[i] as HTMLElement));
+            
             (listDesordenada.children[i] as HTMLElement).addEventListener('click', (e:Event) => {
+
+                // //gambiarra não ta certo é pra fazer coisinha bonitnha
+                // if (type == 'enemy') {
+                //     console.log('enemy');
+                //     (e.target as HTMLElement).style.borderColor = 'red';
+                // }
                 click(e, listDesordenada as HTMLElement);
             });
+
+
             
-        }
-        
+        } 
     }
+
+    
 }
 
 const listaCartas:Cartas[] = [];
 
-pushList('lista_cartas2');
-pushList('lista_cartas1');
+pushList('lista_cartas2','enemy');
+pushList('lista_cartas1','player');

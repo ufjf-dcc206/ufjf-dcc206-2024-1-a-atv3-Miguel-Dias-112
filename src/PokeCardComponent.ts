@@ -5,9 +5,9 @@ console.log(template)
 export default class PokeCard extends HTMLElement{
     
     #shadow;
-    #tipo;
-    #img;
-    #nome;
+    #tipo: String = "";
+    #img: String = "";
+    #nome: String = "";
     constructor(){
         super()
         this.#shadow = this.attachShadow({mode:"closed"})
@@ -21,7 +21,7 @@ export default class PokeCard extends HTMLElement{
 
     }
     #render(){
-        if(this.#nome == undefined){return}
+        if(this.#nome == ""){return}
         this.#shadow.innerHTML = 
         `
             <style>
@@ -53,7 +53,7 @@ export default class PokeCard extends HTMLElement{
       
     }
    
-    attributeChangedCallback(chave, antigo, novo){
+    attributeChangedCallback(chave:String, antigo:String, novo:String){
         if( chave == "tipo"){
             this.#tipo = novo;
         }
